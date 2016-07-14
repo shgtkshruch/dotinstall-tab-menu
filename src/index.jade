@@ -9,12 +9,20 @@ html(lang="ja")
     meta(content='keywords', name='keywords')
     meta(content='width=device-width, initial-scale=1' name='viewport')
     meta(content='telephone=no', name='format-detection')
-    
+
     link(rel='stylesheet', href='styles/style.css', media='all')
   body
-    h1 Hello Github Pages
-
-    
+    .tab
+      ul.tab-menu
+        - ids = ['about', 'service', 'contact']
+        each text, i in ['About', 'Service', 'Contact']
+          li.tab-menu__item
+            a.tab-menu__link(class="#{text == 'About' ? 'active' : ''}" href="#" data-id="#{ids[i]}")= text
+      each id, j in ids
+        .tab-content(id="#{id}" class="#{id == 'about' ? 'active' : ''}")
+          - for (var k = 0; k < 30; k++)
+            = id
+            | &nbsp;
 
     // build:js scripts/main.js
     script(src='scripts/script.js')
